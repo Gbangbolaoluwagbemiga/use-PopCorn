@@ -57,7 +57,7 @@ export default function App() {
   const [selectedId, setSelectedId] = useState(null);
 
   function handleMovieId(id) {
-    setSelectedId(id);
+    setSelectedId(selectedId => (id === selectedId ? null : id));
   }
   function handleRemoveId() {
     setSelectedId(null);
