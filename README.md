@@ -6,4 +6,4 @@
 
 The Demo version -
 
-<img src="./public/demoPopCorn.jpg" alt="Demo">
+<img src="public/demoPopCorn.jpg" alt="Demo">
