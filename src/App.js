@@ -60,7 +60,7 @@ export default function App() {
     setSelectedId(id);
   }
   function handleRemoveId() {
-    setSelectedId('');
+    setSelectedId(null);
   }
 
   useEffect(
@@ -224,10 +224,10 @@ function MovieDetails({selectedId, onRemoveId}) {
       {selectedId}
       <button
         style={{display: 'inline'}}
-        className="details"
+        className="btn-back"
         onClick={onRemoveId}
       >
-        X
+        &larr;
       </button>
     </div>
   );
