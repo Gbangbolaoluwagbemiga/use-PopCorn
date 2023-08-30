@@ -219,6 +219,43 @@ function Box({children}) {
   );
 }
 function MovieDetails({selectedId, onRemoveId}) {
+  const [movies, setMovies] = useState({});
+  const {
+    Actors: actors,
+    Awards: awards,
+    Country: country,
+    Director: director,
+    Genre: genre,
+    Language: language,
+    Plot: plot,
+    Poster: poster,
+    Production: production,
+    Rated: rated,
+    Ratings: Ratings,
+    Released: released,
+    Response: response,
+    Runtime: runtime,
+    Title: title,
+    Type: type,
+    Website: website,
+    Writer: writer,
+    Year: year,
+    imdbID,
+    imdbRating,
+    imdbVotes,
+  } = movies;
+  console.log(actors, production);
+
+  useEffect(function () {
+    async function getMovieDetails() {
+      const res = await fetch(
+        `http://www.omdbapi.com/?apikey=${apiKey}&i=${selectedId} `
+      );
+      const data = await res.json();
+      setMovies(data);
+    }
+    getMovieDetails();
+  }, []);
   return (
     <div className="list">
       {selectedId}
