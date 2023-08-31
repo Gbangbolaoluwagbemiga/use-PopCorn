@@ -273,7 +273,11 @@ function MovieDetails({selectedId, onRemoveId}) {
           <p>
             {released} &bull; {runtime}
           </p>
-          <p style={{fontSize: '25px'}}>{imdbRating}</p>
+          <p>{genre}</p>
+          <p>
+            {' '}
+            <span>⭐</span> {imdbRating}
+          </p>
         </div>
       </header>
     </div>
