@@ -244,7 +244,7 @@ function MovieDetails({selectedId, onRemoveId}) {
     imdbRating,
     imdbVotes,
   } = movies;
-  console.log(actors, production);
+  console.log(movies);
 
   useEffect(function () {
     async function getMovieDetails() {
@@ -257,15 +257,25 @@ function MovieDetails({selectedId, onRemoveId}) {
     getMovieDetails();
   }, []);
   return (
-    <div className="list">
-      {selectedId}
-      <button
-        style={{display: 'inline'}}
-        className="btn-back"
-        onClick={onRemoveId}
-      >
-        &larr;
-      </button>
+    <div className="details">
+      <header>
+        {selectedId}
+        <button
+          style={{display: 'inline'}}
+          className="btn-back"
+          onClick={onRemoveId}
+        >
+          &larr;
+        </button>
+        <img src={poster} alt={`poster of the ${title}`} />
+        <div className="details-overview">
+          <h2>{title}</h2>
+          <p>
+            {released} &bull; {runtime}
+          </p>
+          <p style={{fontSize: '25px'}}>{imdbRating}</p>
+        </div>
+      </header>
     </div>
   );
 }
