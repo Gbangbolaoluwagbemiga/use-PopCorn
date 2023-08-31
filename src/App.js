@@ -259,7 +259,6 @@ function MovieDetails({selectedId, onRemoveId}) {
   return (
     <div className="details">
       <header>
-        {selectedId}
         <button
           style={{display: 'inline'}}
           className="btn-back"
@@ -284,7 +283,7 @@ function MovieDetails({selectedId, onRemoveId}) {
         <p>
           <em>{plot}</em>
         </p>
-        <p>starring {actors}</p>
+        <p>Starring {actors}</p>
         <p>Directed by {director}</p>
       </section>
     </div>
