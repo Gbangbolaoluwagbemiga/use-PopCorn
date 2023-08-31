@@ -275,7 +275,7 @@ function MovieDetails({selectedId, onRemoveId}) {
           <p>{genre}</p>
           <p>
             {' '}
-            <span>⭐</span> {imdbRating}
+            <span>⭐</span> {imdbRating}.
           </p>
         </div>
       </header>
@@ -283,8 +283,8 @@ function MovieDetails({selectedId, onRemoveId}) {
         <p>
           <em>{plot}</em>
         </p>
-        <p>Starring {actors}</p>
-        <p>Directed by {director}</p>
+        <p>Starring {actors}.</p>
+        <p>Directed by {director}.</p>
       </section>
     </div>
   );
