@@ -21,9 +21,9 @@ StarRating.propTypes = {
 };
 
 export default function StarRating({
-  maxRating = 5,
+  maxRating = 10,
   color = '#fcc419',
-  size = 1.25,
+  size = 1.75,
   messages = [],
   defaultRating = 0,
 }) {
