@@ -280,6 +280,13 @@ function MovieDetails({selectedId, onRemoveId}) {
           </p>
         </div>
       </header>
+      <section>
+        <p>
+          <em>{plot}</em>
+        </p>
+        <p>starring {actors}</p>
+        <p>Directed by {director}</p>
+      </section>
     </div>
   );
 }
