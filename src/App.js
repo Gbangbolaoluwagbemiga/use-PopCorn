@@ -243,6 +243,10 @@ function MovieDetails({selectedId, onRemoveId}) {
     fontWeight: 700,
   };
 
+  function handleAdd() {
+    const newWatchedMovie = {};
+  }
+
   useEffect(
     function () {
       setIsLoading(true);
@@ -303,6 +307,7 @@ function MovieDetails({selectedId, onRemoveId}) {
           <section>
             <div className="rating">
               <StarRating maxRating={10} size={2} />
+              <div className="btn-add">Add to list</div>
             </div>
             <p>
               <em>{plot}</em>
