@@ -221,34 +221,26 @@ function Box({children}) {
 }
 function MovieDetails({selectedId, onRemoveId}) {
   const [movies, setMovies] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
   const {
     Actors: actors,
     Awards: awards,
-    Country: country,
     Director: director,
     Genre: genre,
-    Language: language,
     Plot: plot,
     Poster: poster,
-    Production: production,
-    Rated: rated,
-    Ratings: Ratings,
     Released: released,
-    Response: response,
     Runtime: runtime,
     Title: title,
     Type: type,
-    Website: website,
     Writer: writer,
-    Year: year,
-    imdbID,
+    Website: website,
     imdbRating,
-    imdbVotes,
   } = movies;
-  console.log(movies);
 
   useEffect(
     function () {
+      setIsLoading(true);
       async function getMovieDetails() {
         const res = await fetch(
           `http://www.omdbapi.com/?apikey=${apiKey}&i=${selectedId} `
@@ -257,42 +249,54 @@ function MovieDetails({selectedId, onRemoveId}) {
         setMovies(data);
       }
       getMovieDetails();
+      setIsLoading(false);
     },
     [selectedId]
   );
   return (
     <div className="details">
-      <header>
-        <button
-          style={{display: 'inline'}}
-          className="btn-back"
-          onClick={onRemoveId}
-        >
-          &larr;
-        </button>
-        <img src={poster} alt={`poster of the ${title}`} />
-        <div className="details-overview">
-          <h2>{title}</h2>
-          <p>
-            {released} &bull; {runtime}
-          </p>
-          <p>{genre}</p>
-          <p>
-            {' '}
-            <span>⭐</span> {imdbRating}
-          </p>
-        </div>
-      </header>
-      <section>
-        <div className="rating">
-          <StarRating maxRating={10} size={2} />
-        </div>
-        <p>
-          <em>{plot}</em>
-        </p>
-        <p>Starring {actors}.</p>
-        <p>Directed by {director}.</p>
-      </section>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <header>
+            <button
+              style={{display: 'inline'}}
+              className="btn-back"
+              onClick={onRemoveId}
+            >
+              &larr;
+            </button>
+            <img src={poster} alt={`poster of the ${title}`} />
+            <div className="details-overview">
+              <h2>{title}</h2>
+              <p>
+                {released} &bull; {runtime}
+              </p>
+              <p>{genre}</p>
+              <p>
+                {' '}
+                <span>⭐</span> {imdbRating}
+              </p>
+              <p>Duration : {runtime}</p>
+              <p>Type : {type}</p>
+              {awards === 'N/A' ? '' : <p>Award : {awards}</p>}{' '}
+            </div>
+          </header>
+          <section>
+            <div className="rating">
+              <StarRating maxRating={10} size={2} />
+            </div>
+            <p>
+              <em>{plot}</em>
+            </p>
+            <p>Writer : {writer}</p>
+            <p>Starring : {actors}.</p>
+            <p>Directed by {director}.</p>
+            {website === 'N/A' ? '' : <p>Download : {website}</p>}{' '}
+          </section>
+        </>
+      )}
     </div>
   );
 }
