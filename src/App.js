@@ -247,16 +247,19 @@ function MovieDetails({selectedId, onRemoveId}) {
   } = movies;
   console.log(movies);
 
-  useEffect(function () {
-    async function getMovieDetails() {
-      const res = await fetch(
-        `http://www.omdbapi.com/?apikey=${apiKey}&i=${selectedId} `
-      );
-      const data = await res.json();
-      setMovies(data);
-    }
-    getMovieDetails();
-  }, []);
+  useEffect(
+    function () {
+      async function getMovieDetails() {
+        const res = await fetch(
+          `http://www.omdbapi.com/?apikey=${apiKey}&i=${selectedId} `
+        );
+        const data = await res.json();
+        setMovies(data);
+      }
+      getMovieDetails();
+    },
+    [selectedId]
+  );
   return (
     <div className="details">
       <header>
@@ -281,7 +284,9 @@ function MovieDetails({selectedId, onRemoveId}) {
         </div>
       </header>
       <section>
-        <StarRating maxRating={10} size={1.75} />
+        <div className="rating">
+          <StarRating maxRating={10} size={2} />
+        </div>
         <p>
           <em>{plot}</em>
         </p>
