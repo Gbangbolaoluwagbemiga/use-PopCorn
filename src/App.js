@@ -238,6 +238,11 @@ function MovieDetails({selectedId, onRemoveId}) {
     imdbRating,
   } = movies;
 
+  const stylesMovies = {
+    fontSize: '2rem',
+    fontWeight: 700,
+  };
+
   useEffect(
     function () {
       setIsLoading(true);
@@ -276,11 +281,23 @@ function MovieDetails({selectedId, onRemoveId}) {
               <p>{genre}</p>
               <p>
                 {' '}
-                <span>⭐</span> {imdbRating}
+                <span style={stylesMovies}>⭐</span> {imdbRating}
               </p>
-              <p>Duration : {runtime}</p>
-              <p>Type : {type}</p>
-              {awards === 'N/A' ? '' : <p>Award : {awards}</p>}{' '}
+              <p>
+                {' '}
+                <span style={stylesMovies}>Duration</span> : {runtime}
+              </p>
+              <p>
+                {' '}
+                <span style={stylesMovies}>Type</span> : {type}
+              </p>
+              {awards === 'N/A' ? (
+                ''
+              ) : (
+                <p>
+                  <span style={stylesMovies}>Award</span> : {awards}
+                </p>
+              )}{' '}
             </div>
           </header>
           <section>
@@ -290,10 +307,24 @@ function MovieDetails({selectedId, onRemoveId}) {
             <p>
               <em>{plot}</em>
             </p>
-            <p>Writer : {writer}</p>
-            <p>Starring : {actors}.</p>
-            <p>Directed by {director}.</p>
-            {website === 'N/A' ? '' : <p>Download : {website}</p>}{' '}
+            <p>
+              <span style={stylesMovies}>Writer</span>: {writer}
+            </p>
+            <p>
+              {' '}
+              <span style={stylesMovies}>Starring</span> : {actors}.
+            </p>
+            <p>
+              <span style={stylesMovies}>Directed</span> by {director}.
+            </p>
+            {website === 'N/A' ? (
+              ''
+            ) : (
+              <p>
+                {' '}
+                <span style={stylesMovies}>Download</span> : {website}
+              </p>
+            )}{' '}
           </section>
         </>
       )}
