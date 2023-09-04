@@ -64,6 +64,10 @@ export default function App() {
     setSelectedId(null);
   }
 
+  function handleAddWatch(newMovies) {
+    setWatchMovies(prev => [...prev, newMovies]);
+  }
+
   useEffect(
     function () {
       setIsLoading(false);
@@ -117,7 +121,11 @@ export default function App() {
         {/* The list of watched movie */}
         <Box>
           {selectedId ? (
-            <MovieDetails selectedId={selectedId} onRemoveId={handleRemoveId} />
+            <MovieDetails
+              selectedId={selectedId}
+              onRemoveId={handleRemoveId}
+              onAddWatch={handleAddWatch}
+            />
           ) : (
             <>
               <WatchedSummary watched={watched} />
@@ -219,7 +227,7 @@ function Box({children}) {
     </div>
   );
 }
-function MovieDetails({selectedId, onRemoveId}) {
+function MovieDetails({selectedId, onRemoveId, onAddWatch}) {
   const [movies, setMovies] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const {
@@ -235,7 +243,9 @@ function MovieDetails({selectedId, onRemoveId}) {
     Type: type,
     Writer: writer,
     Website: website,
+    Year: year,
     imdbRating,
+    imdbID,
   } = movies;
 
   const stylesMovies = {
@@ -244,7 +254,16 @@ function MovieDetails({selectedId, onRemoveId}) {
   };
 
   function handleAdd() {
-    const newWatchedMovie = {};
+    const newWatchedMovie = {
+      imdbID: selectedId,
+      poster,
+      title,
+      year,
+      poster,
+      imdbRating: Number(imdbRating),
+      runtime: Number(runtime.split(' ').at(0)),
+    };
+    onAddWatch(newWatchedMovie);
   }
 
   useEffect(
@@ -307,7 +326,9 @@ function MovieDetails({selectedId, onRemoveId}) {
           <section>
             <div className="rating">
               <StarRating maxRating={10} size={2} />
-              <div className="btn-add">Add to list</div>
+              <div className="btn-add" onClick={handleAdd}>
+                + Add to list
+              </div>
             </div>
             <p>
               <em>{plot}</em>
@@ -380,8 +401,8 @@ function WatchedMovie({watched}) {
 function ListWatchedMovie({movie}) {
   return (
     <li>
-      <img src={movie.Poster} alt={`${movie.Title} poster`} />
-      <h3>{movie.Title}</h3>
+      <img src={movie.poster} alt={`${movie.title} poster`} />
+      <h3>{movie.title}</h3>
       <div>
         <p>
           <span>⭐️</span>

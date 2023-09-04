@@ -14,7 +14,7 @@ const starStyle = {
 
 StarRating.propTypes = {
   maxRating: PropTypes.number,
-  color: PropTypes.string.isRequired,
+  // color: PropTypes.string.isRequired,
   size: PropTypes.number,
   messages: PropTypes.array,
   defaultRating: PropTypes.number,
