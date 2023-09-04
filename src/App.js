@@ -230,6 +230,8 @@ function Box({children}) {
 function MovieDetails({selectedId, onRemoveId, onAddWatch}) {
   const [movies, setMovies] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [userRating, setUserRating] = useState('');
+
   const {
     Actors: actors,
     Awards: awards,
@@ -326,7 +328,7 @@ function MovieDetails({selectedId, onRemoveId, onAddWatch}) {
           </header>
           <section>
             <div className="rating">
-              <StarRating maxRating={10} size={2} />
+              <StarRating maxRating={10} size={2} onSetRating={setUserRating} />
               <div className="btn-add" onClick={handleAdd}>
                 + Add to list
               </div>

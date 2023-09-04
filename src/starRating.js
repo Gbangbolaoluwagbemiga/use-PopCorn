@@ -26,6 +26,7 @@ export default function StarRating({
   size = 1.75,
   messages = [],
   defaultRating = 0,
+  onSetRating,
 }) {
   const textStyle = {
     lineHeight: '1',
@@ -37,6 +38,10 @@ export default function StarRating({
   const [rating, setRating] = useState(defaultRating);
   const [hoverRating, setHoverRating] = useState(0);
 
+  function handleRating(rating) {
+    setRating(rating);
+    onSetRating(rating);
+  }
   return (
     <div style={containerSyle}>
       <div style={starStyle}>
@@ -44,7 +49,7 @@ export default function StarRating({
           <Star
             key={i}
             full={hoverRating ? hoverRating >= i + 1 : rating >= i + 1}
-            onRate={() => setRating(1 + i)}
+            onRate={() => handleRating(1 + i)}
             onHoverInRate={() => setHoverRating(1 + i)}
             // onHoverOutRate={() => setHoverRating(0)}
             color={color}
