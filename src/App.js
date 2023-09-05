@@ -125,6 +125,7 @@ export default function App() {
               selectedId={selectedId}
               onRemoveId={handleRemoveId}
               onAddWatch={handleAddWatch}
+              watched={watched}
             />
           ) : (
             <>
