@@ -264,6 +264,7 @@ function MovieDetails({selectedId, onRemoveId, onAddWatch}) {
       poster,
       imdbRating: Number(imdbRating),
       runtime: Number(runtime.split(' ').at(0)),
+      userRating,
     };
     onAddWatch(newWatchedMovie);
     onRemoveId();
