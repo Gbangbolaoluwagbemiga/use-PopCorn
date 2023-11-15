@@ -332,9 +332,9 @@ function MovieDetails({selectedId, onRemoveId, onAddWatch}) {
             <div className="rating">
               <StarRating maxRating={10} size={2} onSetRating={setUserRating} />
               {userRating > 0 && (
-                <div className="btn-add" onClick={handleAdd}>
+                <button className="btn-add" onClick={handleAdd}>
                   + Add to list
-                </div>
+                </button>
               )}
             </div>
             <p>
