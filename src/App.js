@@ -233,8 +233,6 @@ function MovieDetails({selectedId, onRemoveId, onAddWatch, watched}) {
   const [isLoading, setIsLoading] = useState(false);
   const [userRating, setUserRating] = useState('');
 
-  const isWatched = watched.map(movies => movies.imdbID).includes(selectedId);
-
   const {
     Actors: actors,
     Awards: awards,
@@ -257,6 +255,8 @@ function MovieDetails({selectedId, onRemoveId, onAddWatch, watched}) {
     fontSize: '2rem',
     fontWeight: 700,
   };
+
+  const isWatched = watched.map(movies => movies.imdbID).includes(selectedId);
 
   function handleAdd() {
     const newWatchedMovie = {
@@ -331,12 +331,22 @@ function MovieDetails({selectedId, onRemoveId, onAddWatch, watched}) {
           </header>
           <section>
             <div className="rating">
-              <StarRating maxRating={10} size={2} onSetRating={setUserRating} />
-              {userRating >= 1 && !isWatched && (
-                <button className="btn-add" onClick={handleAdd}>
-                  + Add to list
-                </button>
+              {!isWatched && (
+                <>
+                  {' '}
+                  <StarRating
+                    maxRating={10}
+                    size={2}
+                    onSetRating={setUserRating}
+                  />
+                  {userRating >= 1 && (
+                    <button className="btn-add" onClick={handleAdd}>
+                      + Add to list
+                    </button>
+                  )}
+                </>
               )}
+              {isWatched && <p>You rated this movie.</p>}
             </div>
             <p>
               <em>{plot}</em>
