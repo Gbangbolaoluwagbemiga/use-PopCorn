@@ -228,10 +228,12 @@ function Box({children}) {
     </div>
   );
 }
-function MovieDetails({selectedId, onRemoveId, onAddWatch}) {
+function MovieDetails({selectedId, onRemoveId, onAddWatch, watched}) {
   const [movies, setMovies] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [userRating, setUserRating] = useState('');
+
+  const isWatched = watched.map(movies => movies.imdbID).includes(selectedId);
 
   const {
     Actors: actors,
@@ -330,7 +332,7 @@ function MovieDetails({selectedId, onRemoveId, onAddWatch}) {
           <section>
             <div className="rating">
               <StarRating maxRating={10} size={2} onSetRating={setUserRating} />
-              {userRating >= 1 && (
+              {userRating >= 1 && !isWatched && (
                 <button className="btn-add" onClick={handleAdd}>
                   + Add to list
                 </button>
