@@ -257,6 +257,9 @@ function MovieDetails({selectedId, onRemoveId, onAddWatch, watched}) {
   };
 
   const isWatched = watched.map(movies => movies.imdbID).includes(selectedId);
+  const watchUserRating = watched.find(
+    movies => movies.imdbID === selectedId
+  )?.userRating;
 
   function handleAdd() {
     const newWatchedMovie = {
@@ -346,7 +349,7 @@ function MovieDetails({selectedId, onRemoveId, onAddWatch, watched}) {
                   )}
                 </>
               )}
-              {isWatched && <p>You rated this movie.</p>}
+              {isWatched && <p>You rated this movie {watchUserRating}⭐</p>}
             </div>
             <p>
               <em>{plot}</em>
