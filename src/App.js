@@ -240,6 +240,8 @@ function MovieDetails({selectedId, onRemoveId, onAddWatch, watched}) {
   const [isLoading, setIsLoading] = useState(false);
   const [userRating, setUserRating] = useState('');
 
+  console.log(document.title);
+
   const {
     Actors: actors,
     Awards: awards,
