@@ -89,8 +89,10 @@ export default function App() {
           if (data.Response === 'False') throw new Error(`No movies found`);
 
           setMovies(data.Search);
-        } catch (Err) {
-          setError(Err.message);
+          setError('');
+        } catch (err) {
+          if (err.name === 'AbortError') return;
+          setError(err.message);
         } finally {
           setIsLoading(true);
         }
