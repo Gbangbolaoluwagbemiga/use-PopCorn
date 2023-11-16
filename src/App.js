@@ -299,6 +299,7 @@ function MovieDetails({selectedId, onRemoveId, onAddWatch, watched}) {
   );
   useEffect(
     function () {
+      if (!title) return;
       document.title = `${type} | ${title}`;
     },
     [title]
