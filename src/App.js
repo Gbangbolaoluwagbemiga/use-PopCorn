@@ -240,8 +240,6 @@ function MovieDetails({selectedId, onRemoveId, onAddWatch, watched}) {
   const [isLoading, setIsLoading] = useState(false);
   const [userRating, setUserRating] = useState('');
 
-  console.log(document.title);
-
   const {
     Actors: actors,
     Awards: awards,
@@ -299,9 +297,12 @@ function MovieDetails({selectedId, onRemoveId, onAddWatch, watched}) {
     },
     [selectedId]
   );
-  useEffect(function () {
-    document.title = `Movie | ${title}`;
-  }, []);
+  useEffect(
+    function () {
+      document.title = `${type} | ${title}`;
+    },
+    [title]
+  );
 
   return (
     <div className="details">
