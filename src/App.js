@@ -301,6 +301,10 @@ function MovieDetails({selectedId, onRemoveId, onAddWatch, watched}) {
     function () {
       if (!title) return;
       document.title = `${type} | ${title}`;
+
+      return function () {
+        document.title = 'usePopCorn';
+      };
     },
     [title]
   );
