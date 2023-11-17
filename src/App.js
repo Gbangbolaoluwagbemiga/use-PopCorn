@@ -289,13 +289,16 @@ function MovieDetails({selectedId, onRemoveId, onAddWatch, watched, setError}) {
     onRemoveId();
   }
 
-  useEffect(function () {
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') {
-        onRemoveId();
-      }
-    });
-  }, []);
+  useEffect(
+    function () {
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          onRemoveId();
+        }
+      });
+    },
+    [onRemoveId]
+  );
 
   useEffect(
     function () {
@@ -318,7 +321,7 @@ function MovieDetails({selectedId, onRemoveId, onAddWatch, watched, setError}) {
       getMovieDetails();
       setIsLoading(false);
     },
-    [selectedId]
+    [selectedId, setError]
   );
   useEffect(
     function () {
@@ -329,7 +332,7 @@ function MovieDetails({selectedId, onRemoveId, onAddWatch, watched, setError}) {
         document.title = 'usePopCorn';
       };
     },
-    [title]
+    [title, type]
   );
 
   return (
