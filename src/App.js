@@ -319,8 +319,7 @@ function MovieDetails({selectedId, onRemoveId, onAddWatch, watched, setError}) {
       document.title = `${type} | ${title}`;
 
       return function () {
-        console.log('Hiiii');
-        // document.title = 'usePopCorn';
+        document.title = 'usePopCorn';
       };
     },
     [title]
