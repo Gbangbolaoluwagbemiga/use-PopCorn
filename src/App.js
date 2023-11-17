@@ -262,7 +262,6 @@ function MovieDetails({selectedId, onRemoveId, onAddWatch, watched, setError}) {
     Website: website,
     Year: year,
     imdbRating,
-    imdbID,
   } = movies;
 
   const stylesMovies = {
