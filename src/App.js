@@ -137,6 +137,7 @@ export default function App() {
               onRemoveId={handleRemoveId}
               onAddWatch={handleAddWatch}
               watched={watched}
+              setError={setError}
             />
           ) : (
             <>
@@ -242,7 +243,7 @@ function Box({children}) {
     </div>
   );
 }
-function MovieDetails({selectedId, onRemoveId, onAddWatch, watched}) {
+function MovieDetails({selectedId, onRemoveId, onAddWatch, watched, setError}) {
   const [movies, setMovies] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [userRating, setUserRating] = useState('');
@@ -293,11 +294,19 @@ function MovieDetails({selectedId, onRemoveId, onAddWatch, watched}) {
     function () {
       setIsLoading(true);
       async function getMovieDetails() {
-        const res = await fetch(
-          `http://www.omdbapi.com/?apikey=${apiKey}&i=${selectedId} `
-        );
-        const data = await res.json();
-        setMovies(data);
+        try {
+          const res = await fetch(
+            `http://www.omdbapi.com/?apikey=${apiKey}&i=${selectedId} `
+          );
+          if (!res.ok) throw new Error(`Try again`);
+
+          const data = await res.json();
+          if (data.Response === 'False') throw new Error(`Network is bad`);
+
+          setMovies(data);
+        } catch (err) {
+          setError(err.message);
+        }
       }
       getMovieDetails();
       setIsLoading(false);
@@ -310,7 +319,8 @@ function MovieDetails({selectedId, onRemoveId, onAddWatch, watched}) {
       document.title = `${type} | ${title}`;
 
       return function () {
-        document.title = 'usePopCorn';
+        console.log('Hiiii');
+        // document.title = 'usePopCorn';
       };
     },
     [title]
