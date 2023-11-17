@@ -393,9 +393,9 @@ FONT SIZE SYSTEM (px)
     max-width: 100%;
   }
   .rating {
-    padding: 1rem 0;
+    padding: 1rem 0.2rem;
     margin-bottom: 0.8rem;
-    width: 100%;
+    width: 25rem;
     gap: 1rem;
   }
   .details header {
@@ -403,6 +403,7 @@ FONT SIZE SYSTEM (px)
   }
   .details img {
     width: 100%;
+    height: 33rem;
   }
 
   /* ------ */
