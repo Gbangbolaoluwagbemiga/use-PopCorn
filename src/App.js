@@ -105,6 +105,7 @@ export default function App() {
         return;
       }
 
+      handleRemoveId();
       fetchMovies();
       return function () {
         controller.abort();
