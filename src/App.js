@@ -291,11 +291,15 @@ function MovieDetails({selectedId, onRemoveId, onAddWatch, watched, setError}) {
 
   useEffect(
     function () {
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') {
+      function eventCleanUP(e) {
+        if (e.code === 'Escape') {
           onRemoveId();
         }
-      });
+      }
+      document.addEventListener('keydown', eventCleanUP);
+      return function () {
+        document.removeEventListener('keydown', eventCleanUP);
+      };
     },
     [onRemoveId]
   );
