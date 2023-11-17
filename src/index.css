@@ -393,14 +393,16 @@ FONT SIZE SYSTEM (px)
     max-width: 100%;
   }
   .rating {
-    padding: 1rem 1.4rem;
+    padding: 1rem 0;
     margin-bottom: 0.8rem;
     width: 100%;
-    gap: 2.4rem;
+    gap: 1rem;
   }
   .details header {
-    display: flex;
     flex-direction: column;
+  }
+  .details img {
+    width: 100%;
   }
 
   /* ------ */
