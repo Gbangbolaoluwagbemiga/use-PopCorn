@@ -63,6 +63,7 @@ export default function App() {
   }
   function handleRemoveId() {
     setSelectedId(null);
+    localStorage;
   }
 
   function handleAddWatch(newMovies) {
@@ -501,5 +502,4 @@ function ListWatchedMovie({movie, onDeleteWatched}) {
       </div>
     </li>
   );
-  //
 }
