@@ -66,12 +66,17 @@ export default function App() {
 
   function handleAddWatch(newMovies) {
     setWatchMovies(prev => [...prev, newMovies]);
-    localStorage.setItem('watched', JSON.stringify([...watched, newMovies]));
   }
 
   function handleDeleteWatched(id) {
     setWatchMovies(watched => watched.filter(movie => movie.imdbID !== id));
   }
+  useEffect(
+    function () {
+      localStorage.setItem('watched', JSON.stringify([...watched]));
+    },
+    [watched]
+  );
 
   useEffect(
     function () {
