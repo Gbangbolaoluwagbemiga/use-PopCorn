@@ -63,11 +63,11 @@ export default function App() {
   }
   function handleRemoveId() {
     setSelectedId(null);
-    localStorage;
   }
 
   function handleAddWatch(newMovies) {
     setWatchMovies(prev => [...prev, newMovies]);
+    localStorage.setItem('watched', JSON.stringify([...watched, newMovies]));
   }
 
   function handleDeleteWatched(id) {
