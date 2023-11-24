@@ -51,11 +51,14 @@ const apiKey = `2834ffac`;
 
 export default function App() {
   const [movies, setMovies] = useState([]);
-  const [watched, setWatchMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
   const [query, setQuery] = useState('');
   const [selectedId, setSelectedId] = useState(null);
+  const [watched, setWatchMovies] = useState(function () {
+    const storedWatched = localStorage.getItem('watched');
+    return JSON.parse(storedWatched);
+  });
 
   function handleMovieId(id) {
     setSelectedId(selectedId => (id === selectedId ? null : id));
@@ -73,7 +76,7 @@ export default function App() {
   }
   useEffect(
     function () {
-      localStorage.setItem('watched', JSON.stringify([watched]));
+      localStorage.setItem('watched', JSON.stringify(watched));
     },
     [watched]
   );
