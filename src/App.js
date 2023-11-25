@@ -194,7 +194,7 @@ function Logo() {
 function Search({query, setQuery}) {
   // useEffect(function () {}, []);
   const searcher = useRef(null);
-  console.log(searcher.current);
+  searcher.current.focus();
   return (
     <input
       className="search"
