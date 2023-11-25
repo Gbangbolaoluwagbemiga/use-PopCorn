@@ -1,13 +1,14 @@
 import {useEffect, useState} from 'react';
 const apiKey = `2834ffac`;
 
-export function useMovies(query) {
+export function useMovies(query, callback) {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
 
   useEffect(
     function () {
+      callback?.();
       const controller = new AbortController();
       setIsLoading(false);
       async function fetchMovies() {
@@ -38,7 +39,6 @@ export function useMovies(query) {
         return;
       }
 
-      //   handleRemoveId();
       fetchMovies();
       return function () {
         controller.abort();

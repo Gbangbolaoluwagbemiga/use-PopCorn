@@ -59,7 +59,7 @@ export default function App() {
     return JSON.parse(storedWatched);
   });
 
-  const {movies, isLoading, error} = useMovies(query);
+  const {movies, isLoading, error} = useMovies(query, handleRemoveId);
 
   function handleMovieId(id) {
     setSelectedId(selectedId => (id === selectedId ? null : id));
