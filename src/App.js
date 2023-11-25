@@ -193,16 +193,19 @@ function Logo() {
 
 function Search({query, setQuery}) {
   const searcher = useRef(null);
-  useEffect(function () {
-    function callback(e) {
-      if (document.activeElement === searcher.current) return;
-      if (e.code === 'Enter') {
-        searcher.current.focus();
-        setQuery('');
+  useEffect(
+    function () {
+      function callback(e) {
+        if (document.activeElement === searcher.current) return;
+        if (e.code === 'Enter') {
+          searcher.current.focus();
+          setQuery('');
+        }
       }
-    }
-    document.addEventListener('keydown', callback);
-  }, []);
+      document.addEventListener('keydown', callback);
+    },
+    [setQuery]
+  );
   return (
     <input
       className="search"
@@ -270,6 +273,15 @@ function MovieDetails({selectedId, onRemoveId, onAddWatch, watched, setError}) {
   const [isLoading, setIsLoading] = useState(false);
   const [userRating, setUserRating] = useState('');
 
+  const countRef = useRef(0);
+
+  useEffect(
+    function () {
+      if (userRating) countRef.current += 1;
+    },
+    [userRating]
+  );
+
   const {
     Actors: actors,
     Awards: awards,
@@ -306,6 +318,7 @@ function MovieDetails({selectedId, onRemoveId, onAddWatch, watched, setError}) {
       imdbRating: Number(imdbRating),
       runtime: Number(runtime.split(' ').at(0)),
       userRating,
+      numberOfCount: countRef.current,
     };
     onAddWatch(newWatchedMovie);
     onRemoveId();
