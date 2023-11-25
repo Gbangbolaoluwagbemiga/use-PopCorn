@@ -195,7 +195,11 @@ function Search({query, setQuery}) {
   const searcher = useRef(null);
   useEffect(function () {
     function callback(e) {
-      if (e.code === 'Enter') searcher.current.focus();
+      if (document.activeElement === searcher.current) return;
+      if (e.code === 'Enter') {
+        searcher.current.focus();
+        setQuery('');
+      }
     }
     document.addEventListener('keydown', callback);
   }, []);
