@@ -3,6 +3,7 @@ import StarRating from './starRating';
 import {useRef} from 'react';
 import {useMovies} from './useMovies';
 import {useLocalStorage} from './useLocalStorage';
+import {useKey} from './useKey';
 
 const apiKey = `2834ffac`;
 
@@ -229,21 +230,7 @@ function MovieDetails({selectedId, onRemoveId, onAddWatch, watched, setError}) {
     onRemoveId();
   }
 
-  useEffect(
-    function () {
-      function eventCleanUP(e) {
-        if (e.code === 'Escape') {
-          onRemoveId();
-        }
-      }
-      document.addEventListener('keydown', eventCleanUP);
-      return function () {
-        document.removeEventListener('keydown', eventCleanUP);
-      };
-    },
-    [onRemoveId]
-  );
-
+  useKey(onRemoveId, 'Escape');
   useEffect(
     function () {
       setIsLoading(true);
