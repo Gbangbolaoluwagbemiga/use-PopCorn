@@ -99,19 +99,13 @@ function Logo() {
 
 function Search({query, setQuery}) {
   const searcher = useRef(null);
-  useEffect(
-    function () {
-      function callback(e) {
-        if (document.activeElement === searcher.current) return;
-        if (e.code === 'Enter') {
-          searcher.current.focus();
-          setQuery('');
-        }
-      }
-      document.addEventListener('keydown', callback);
-    },
-    [setQuery]
-  );
+
+  useKey('Enter', function () {
+    if (document.activeElement === searcher.current) return;
+    searcher.current.focus();
+    setQuery('');
+  });
+
   return (
     <input
       className="search"
