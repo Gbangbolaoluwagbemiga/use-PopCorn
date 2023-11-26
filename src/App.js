@@ -230,7 +230,7 @@ function MovieDetails({selectedId, onRemoveId, onAddWatch, watched, setError}) {
     onRemoveId();
   }
 
-  useKey(onRemoveId, 'Escape');
+  useKey('Escape', onRemoveId);
   useEffect(
     function () {
       setIsLoading(true);
