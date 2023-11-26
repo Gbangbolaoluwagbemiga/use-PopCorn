@@ -13,5 +13,5 @@ export function useLocalStorage(initialState, key) {
     [watched, key]
   );
 
-  return {watched, setWatchMovies};
+  return [watched, setWatchMovies];
 }
