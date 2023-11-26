@@ -13,5 +13,5 @@ export function useLocalStorage() {
     [watched]
   );
 
-  return {watched};
+  return {watched, setWatchMovies};
 }
